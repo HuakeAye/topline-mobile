@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
+  <div>
+    login
   </div>
 </template>
 
@@ -10,5 +10,5 @@ export default {
 }
 </script>
 
-<style lang="less" scope>
+<style>
 </style>
