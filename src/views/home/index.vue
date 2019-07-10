@@ -1,6 +1,6 @@
 <template>
   <div>
-    home
+    <p></p>
   </div>
 </template>
 
@@ -10,5 +10,10 @@ export default {
 }
 </script>
 
-<style>
+<style scope>
+p {
+  height: 30px;
+  width: 375px;
+  background-color: aquamarine;
+}
 </style>

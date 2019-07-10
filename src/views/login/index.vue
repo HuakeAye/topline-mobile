@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { login } from '@/api/article'
 export default {
   name: 'login',
   data () {
@@ -39,12 +39,14 @@ export default {
   },
   methods: {
     async handlelogin () {
-      const data = await axios({
-        method: 'POST',
-        url: 'http://toutiao.course.itcast.cn/app/v1_0/user/followings',
-        data: this.user
-      })
-      console.log(data)
+      try {
+        const data = await login(this.user)
+        console.log(data)
+        console.log('登录成功')
+      } catch (err) {
+        console.log(err)
+        console.log('登录失败')
+      }
     }
   }
 }
