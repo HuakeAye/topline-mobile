@@ -5,6 +5,7 @@ export const getUser = () => {
 }
 
 export const setUser = (data) => {
+  console.log(data)
   window.localStorage.setItem(USER_KEY, JSON.stringify(data))
 }
 
