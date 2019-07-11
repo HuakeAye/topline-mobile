@@ -6,6 +6,14 @@ import Vant from 'vant'
 import 'vant/lib/index.css'
 import 'amfe-flexible'
 import './styles/index.less'
+import zhCN from '../node_modules/vee-validate/dist/locale/zh_CN'
+import VeeValidate, { Validator } from 'vee-validate'
+
+Vue.use(VeeValidate, {
+  events: ''
+})
+
+Validator.localize('zh_CN', zhCN)
 
 Vue.use(Vant)
 
