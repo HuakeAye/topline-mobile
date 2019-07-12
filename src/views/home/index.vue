@@ -37,6 +37,12 @@ export default {
       channels: []
     }
   },
+  watch: {
+    async  '$store.state.user' () {
+      this.loadchannels()
+      this.activeChannel.upPullLoading = true
+    }
+  },
   computed: {
     activeChannel () {
       return this.channels[this.activeChannelIndex]
