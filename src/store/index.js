@@ -9,10 +9,9 @@ const store = new Vuex.Store({
     user: auth.getUser()
   },
   mutations: {
-    saveUser (state, data) {
-      console.log(data)
+    setUser (state, data) {
       state.user = data
-      auth.setUser(state.user)
+      auth.svaeUser(state.user)
     }
   },
   actions: {

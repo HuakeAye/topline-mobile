@@ -1,14 +1,16 @@
 const USER_KEY = 'user'
 
+// 获取用户信息
 export const getUser = () => {
-  return window.localStorage.getItem(USER_KEY)
+  return JSON.parse(window.localStorage.getItem(USER_KEY))
 }
 
-export const setUser = (data) => {
-  console.log(data)
+// 添加用户信息，或修改
+export const svaeUser = (data) => {
   window.localStorage.setItem(USER_KEY, JSON.stringify(data))
 }
 
+// 删除用户信息
 export const removeUser = () => {
   window.localStorage.removeItem(USER_KEY)
 }

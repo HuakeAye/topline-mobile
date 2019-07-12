@@ -51,12 +51,11 @@ export default {
     async handlelogin () {
       try {
         const valid = await this.$validator.validate()
-        console.log(valid)
         if (!valid) {
           return
         }
         const data = await login(this.user)
-        this.$store.commit('saveUser', data)
+        this.$store.commit('setUser', data)
         this.$router.push({ name: 'home' })
       } catch (err) {
         console.log(err)
