@@ -5,6 +5,11 @@
                    fixed />
       <van-tabs class="channel-tabs"
                 v-model="activeChannelIndex">
+        <div slot="nav-right"
+             class="wap-nav"
+             @click="ischannelshow = true">
+          <van-icon name="wap-nav" />
+        </div>
         <van-tab :title="channelsItem.name"
                  v-for="channelsItem in channels"
                  :key="channelsItem.id">
@@ -24,17 +29,25 @@
         </van-tab>
       </van-tabs>
     </div>
+    <HomeChannel v-model="ischannelshow"
+                 :channels="channels"
+                 :activeIndex="activeChannelIndex" />
   </div>
 </template>
 
 <script>
 import { getUserChannels } from '../../api/channel'
 import { getArticles } from '../../api/article'
+import HomeChannel from './components/channel'
 export default {
+  components: {
+    HomeChannel
+  },
   data () {
     return {
       activeChannelIndex: 0,
-      channels: []
+      channels: [],
+      ischannelshow: false
     }
   },
   watch: {
@@ -53,10 +66,8 @@ export default {
   },
   methods: {
     async onLoad () {
-      console.log('onLoad')
       let data = []
       data = await this.loadArticles()
-      console.log(data)
       // 如果没有 pre_timestamp 并且数组时空的，则意味这没有数据了
       if (!data.pre_timestamp && !data.results.length) {
         // 设置该频道数据加载完毕，组件会自动给出提示，并且不再onload
@@ -112,7 +123,6 @@ export default {
       // 已登录
       if (user) {
         const data = await getUserChannels()
-        console.log(data)
         channels = data.channels
       } else {
         // 未登录
@@ -141,7 +151,6 @@ export default {
     },
     async loadArticles () {
       const { id: channelId, timestamp } = this.activeChannel
-      console.log(timestamp)
       const data = await getArticles({
         channelId,
         timestamp,
@@ -163,5 +172,10 @@ export default {
 }
 .channel-tabs /deep/ .van-tabs__content {
   margin-bottom: 100px;
+}
+.channel-tabs /deep/ .wap-nav {
+  position: fixed;
+  right: 0;
+  background-color: #fff;
 }
 </style>
