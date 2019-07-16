@@ -13,6 +13,14 @@ Vue.use(VeeValidate, {
   events: ''
 })
 
+Vue.prototype.$sleep = time => {
+  return new Promise((resolve, reject) => {
+    window.setTimeout(() => {
+      resolve()
+    }, time)
+  })
+}
+
 Validator.localize('zh_CN', zhCN)
 
 Vue.use(Vant)

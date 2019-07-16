@@ -30,8 +30,8 @@
       </van-tabs>
     </div>
     <HomeChannel v-model="ischannelshow"
-                 :channels="channels"
-                 :activeIndex="activeChannelIndex" />
+                 :userchannels="channels"
+                 :activeIndex.sync="activeChannelIndex" />
   </div>
 </template>
 
@@ -66,6 +66,7 @@ export default {
   },
   methods: {
     async onLoad () {
+      await this.$sleep(800)
       let data = []
       data = await this.loadArticles()
       // 如果没有 pre_timestamp 并且数组时空的，则意味这没有数据了
